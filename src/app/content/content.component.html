@@ -1,0 +1,48 @@
+<div class="left-sidebar">
+    <h2>Topics</h2>
+    <ul>
+        <li *ngFor="let topic of topics" [class.selected]="selectedTopic?.topicId === topic.topicId"
+            (click)="selectTopic(topic)" class="p-2 mt-1 topic-class">
+            {{ topic.topicName }}
+        </li>
+    </ul>
+    <!-- Start Test Button -->
+    <div class="test-container">
+        <button (click)="openModal()" class="btn-start-test">Start Test</button>
+    </div>
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <button (click)="logout()" class="btn-logout">Logout</button>
+    </div>
+</div>
+
+
+
+<div class="content" *ngIf="selectedTopic">
+    <h2>Topic Information for {{ selectedTopic.topicName }}</h2>
+    <ul>
+        <li *ngFor="let info of topicInformation">
+            <span [innerHTML]="getSafeHtml(info.content)"></span><br>
+            <!-- You can add more fields from TopicInformation here -->
+            <hr> <!-- Optional: Add a horizontal line between items -->
+        </li>
+    </ul>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Modal title</h5>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+  <div class="row w-100">
+    <!-- Login Section -->
+    <h1>Welcome to Code Vista</h1>
+    <div class="col-md-6 bg-light p-5">
+      <h2 class="text-center mb-4">Login to Your Account</h2>
+      <form (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="loginEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="loginEmail" [(ngModel)]="loginData.email" name="email"
+            placeholder="Enter your email" required />
+        </div>
+        <div class="mb-3">
+          <label for="loginPassword" class="form-label">Password</label>
+          <input type="password" class="form-control" id="loginPassword" [(ngModel)]="loginData.password"
+            name="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn btn-success w-100">Sign In</button>
+      </form>
+
+    </div>
+
+    <!-- Sign Up Section -->
+    <div class="col-md-6 bg-success text-white p-5 d-flex flex-column justify-content-center">
+      <h2 class="text-center mb-4">New Here?</h2>
+      <p class="text-center">Sign up here and boost you knowledge!</p>
+      <button class="btn btn-light mx-auto" (click)="toggleModal('show')">Sign Up</button>
+    </div>
+
+    <!-- Sign Up Form Modal (Popup) -->
+    <div *ngIf="showModal" class="modal fade show" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create an Account</h5>
+            <button type="button" class="btn-close" (click)="toggleModal('hide')" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="signUp()">
+              <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="signupData.firstName"
+                  name="firstName" required />
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="signupData.lastName" name="lastName"
+                  required />
+              </div>
+              <div class="mb-3">
+                <label for="signupEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="signupEmail" [(ngModel)]="signupData.email" name="email"
+                  required />
+              </div>
+              <div class="mb-3">
+                <label for="signupPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="signupPassword" [(ngModel)]="signupData.password"
+                  name="password" required />
+              </div>
+              <button type="submit" class="btn btn-success w-100">Sign Up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,27 @@
+.form-container {
+    height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  .form-box {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-size: 24px;
+  }
+  
+  .bg-success {
+    background-color: #267270 !important;
+  }
+  
+  h1 {
+    color: #007bff;
+    margin-bottom: 30px; /* Space below the heading */
+    text-align: center; /* Center the heading */
+}
+body{
+  background-image: url('https://img.freepik.com/free-vector/digital-coding-background-with-numbers-zero-one_1017-30363.jpg?w=1060&t=st=1727617679~exp=1727618279~hmac=58538313a1d12e8f47a6a21aca757a7447828a4971a0c241f6f53b00e3ff4082');
+}
