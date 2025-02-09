@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonService {
-  public baseUrl = 'http://localhost:8080/rest/';
+  //public baseUrl = 'http://localhost:8080/rest/';
+  public baseUrl='https://codevista-1j74.onrender.com/rest'
   public SERVER_URLS: any = {
     "SIGN_UP": "sign-up",
     "LOGIN": "login",
