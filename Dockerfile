@@ -1,31 +1,26 @@
-# Use the official OpenJDK 17 slim image as the base
-#FROM openjdk:17-jdk-slim
+# Stage 1: Build the application
+FROM maven:3.8.5-openjdk-17 AS builder
+
+# Set the working directory
+WORKDIR /shubham_project
+
+# Copy the Maven project files to the container
+COPY . .
+
+# Build the project
+RUN mvn clean package -DskipTests
+
+# Stage 2: Create the runtime image
+FROM openjdk:17-jdk-slim
 
 # Set the working directory inside the container
-#WORKDIR /app
+WORKDIR /app
 
-# Copy the packaged JAR file into the container
-#COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
+# Copy the built JAR file from the builder stage
+COPY --from=builder /shubham_project/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose the application port (default is 8080 for Spring Boot)
-#EXPOSE 8080
-
-# Command to run the Spring Boot application
-#ENTRYPOINT ["java", "-jar", "app.jar"]
-
-
-
-#FROM maven:3.8.5-openjdk-17 AS builder
-#WORKDIR /app
-FROM openjdk:17-jdk-slim
-COPY src ./src
-COPY pom.xml .
-RUN mvn package 
-
-FROM openjdk:17-jdk-slim
-COPY --from=builder /shubham_project/target/backend-0.0.1-SNAPSHOT.jar /app.jar
-
+# Expose the application port
 EXPOSE 8080
 
-# Command to run the Spring Boot application
+# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
