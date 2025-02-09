@@ -1,14 +1,8 @@
-# Use the official OpenJDK 17 slim image as the base
-FROM openjdk:17-jdk-slim
-
-# Set the working directory inside the container
+FROM maven:3.8.5-openjdk-17 AS builder
 WORKDIR /app
+COPY src ./src
+COPY pom.xml .
+RUN mvn package  # This generates the target directory
 
-# Copy the packaged JAR file into the container
-COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the application port (default is 8080 for Spring Boot)
-EXPOSE 8080
-
-# Command to run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM openjdk:17-jre-slim
+COPY --from=builder /app/target/app.jar /app.jar
