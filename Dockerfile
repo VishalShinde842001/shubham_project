@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the packaged JAR file into the container
-COPY target/*.jar backend-0.0.1-SNAPSHOT.jar
+COPY target/backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port (default is 8080 for Spring Boot)
 EXPOSE 8080
 
 # Command to run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
